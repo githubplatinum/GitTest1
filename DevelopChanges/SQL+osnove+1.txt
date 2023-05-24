@@ -44,11 +44,3 @@ alter table Polaznici alter column BROJTELEFONA varchar(50)  ;
 ALTER TABLE Polaznici DROP COLUMN brojTelefona;
 drop table Polaznici;/*BRISANJE same TABLICE*/
 
-select Ime, Prezime /*primjer*/ from Polaznici;
-
-
-/*VRATI MI SVE PODATKE IZ POLAZNIKA, * OZNAČAVA SVE STUPCE*/
-select * from Upisi;
-select * from Tecajevi;
-
-delete from Polaznici; /*brisanje svih redaka u tablici*/
