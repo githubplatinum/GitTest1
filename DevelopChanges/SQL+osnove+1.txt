@@ -1,0 +1,54 @@
+CREATE TABLE Polaznici (
+	SifraPolaznika int primary key,
+	Ime varchar(50) not null,
+	Prezime varchar(50),
+	MjestoStanovanja varchar(200) 
+		CHECK (MjestoStanovanja='Zagreb' 
+			OR MjestoStanovanja='Osijek'
+			OR MjestoStanovanja='Varaždin'),
+	BROJTELEFONA INTEGER not null,
+	brojGodina int not null CHECK(brojGodina>=18)
+);
+
+INSERT INTO Polaznici (SifraPolaznika,Ime,MjestoStanovanja,BROJTELEFONA,brojGodina)
+VALUES (7,'Nikola','Zagreb','091555284',19);
+
+INSERT INTO Polaznici (SifraPolaznika,Ime,Prezime,MjestoStanovanja,BROJTELEFONA,brojGodina)
+VALUES (2,'Pero','Peric','Zagreb',0915552241,18);
+
+INSERT INTO Polaznici (SifraPolaznika,Ime,Prezime,MjestoStanovanja,BROJTELEFONA,brojGodina)
+VALUES (3,'Pero','Peric','Zagreb','0915552242',18);
+
+
+CREATE TABLE Tecajevi (
+	SifraTecaja int primary key,
+	NazivTecaja varchar(100) NOT NULL
+);
+insert into tecajevi (NazivTecaja,SifraTecaja)
+values ('Dizajn baza podataka',1);
+
+CREATE TABLE Upisi (
+	VK_Polaznik int 
+		FOREIGN KEY REFERENCES Polaznici(SifraPolaznika),
+	VK_Tecaj int 
+		FOREIGN KEY REFERENCES Tecajevi(SifraTecaja),
+);
+insert into Upisi (VK_Tecaj,VK_Polaznik)
+values (1,1);
+/*NULL - OZNAČAVA PRAZNO POLJE
+*/
+
+ALTER TABLE POLAZNICI ADD BROJTELEFONA INT;
+alter table Polaznici alter column BROJTELEFONA varchar(50)  ;
+
+ALTER TABLE Polaznici DROP COLUMN brojTelefona;
+drop table Polaznici;/*BRISANJE same TABLICE*/
+
+select Ime, Prezime /*primjer*/ from Polaznici;
+
+
+/*VRATI MI SVE PODATKE IZ POLAZNIKA, * OZNAČAVA SVE STUPCE*/
+select * from Upisi;
+select * from Tecajevi;
+
+delete from Polaznici; /*brisanje svih redaka u tablici*/
